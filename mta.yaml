@@ -23,6 +23,8 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: dialogdraft-db
+      - name: dialogdraft-auth
+      - name: dialogdraft-destination
 
   - name: dialogdraft-db-deployer
     type: hdb
@@ -38,3 +40,17 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: dialogdraft-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: dialogdraft-${org}-${space}
+        tenant-mode: dedicated
+  - name: dialogdraft-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
