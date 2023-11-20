@@ -23,7 +23,15 @@
     "requires": {
       "db": "hana",
       "auth": "xsuaa",
-      "destinations": true
+      "destinations": true,
+      "z_crud_test_srv": {
+        "kind": "odata-v2",
+        "model": "srv/external/z_crud_test_srv"
+      },
+      "gwsample": {
+        "kind": "odata-v2",
+        "model": "srv/external/gwsample"
+      }
     }
   }
 }

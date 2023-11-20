@@ -1,0 +1,4 @@
+GET http://ES5.dest/sap/opu/odata/iwbep/GWSAMPLE_BASIC/$metadata
+
+###
+GET http://dest_ecc_crud_test.dest/$metadata
