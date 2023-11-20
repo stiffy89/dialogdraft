@@ -32,3 +32,11 @@ mta_archives/
 
 # @cap-js/cds-typer
 @cds-models
+
+#core
+core
+
+#UI build
+dist/
+resources/
+app/*/package-lock.json
