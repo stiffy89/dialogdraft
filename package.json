@@ -6,10 +6,11 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap-cloud-sdk/http-client": "^3.8.1",
     "@sap/cds": "^7",
-    "express": "^4",
     "@sap/cds-hana": "^2",
     "@sap/xssec": "^3",
+    "express": "^4",
     "passport": "^0"
   },
   "devDependencies": {
@@ -21,16 +22,33 @@
   },
   "cds": {
     "requires": {
-      "db": "hana",
+      "db": {
+          "kind": "hana-cloud"
+      },
       "auth": "xsuaa",
       "destinations": true,
       "z_crud_test_srv": {
         "kind": "odata-v2",
-        "model": "srv/external/z_crud_test_srv"
+        "model": "srv/external/z_crud_test_srv",
+        "csrf" : true,
+        "csrfInBatch" : true,
+        "[production]" : {
+            "credentials" : {
+                "destination" : "dest_ecc_crud_test"
+            }
+        }
       },
       "gwsample": {
         "kind": "odata-v2",
-        "model": "srv/external/gwsample"
+        "model": "srv/external/gwsample",
+        "csrf" : true,
+        "csrfInBatch" : true,
+        "[production]" : {
+            "credentials" : {
+                "destination" : "ES5",
+                "path" : "/sap/opu/odata/iwbep/GWSAMPLE_BASIC"
+            }
+        }
       }
     }
   }
