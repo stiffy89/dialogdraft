@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="personsservice" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="PersonSet" EntityType="personsservice.PersonSet">
+                    <NavigationPropertyBinding Path="People" Target="People"/>
+                    <NavigationPropertyBinding Path="EmergencyContacts" Target="EmergencyContacts"/>
+                    <NavigationPropertyBinding Path="ItemsLoaned" Target="ItemLoaned"/>
+                </EntitySet>
+                <EntitySet Name="People" EntityType="personsservice.People"/>
+                <EntitySet Name="ItemLoaned" EntityType="personsservice.ItemLoaned"/>
+                <EntitySet Name="EmergencyContacts" EntityType="personsservice.EmergencyContacts"/>
+            </EntityContainer>
+            <EntityType Name="PersonSet">
+                <Key>
+                    <PropertyRef Name="PersonId"/>
+                </Key>
+                <Property Name="PersonId" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="People" Type="personsservice.People">
+                    <ReferentialConstraint Property="People_PersonId" ReferencedProperty="PersonId"/>
+                </NavigationProperty>
+                <Property Name="People_PersonId" Type="Edm.String" MaxLength="3"/>
+                <NavigationProperty Name="EmergencyContacts" Type="Collection(personsservice.EmergencyContacts)"/>
+                <Property Name="EmergencyContacts_EmergencyContactId" Type="Edm.Guid"/>
+                <NavigationProperty Name="ItemsLoaned" Type="Collection(personsservice.ItemLoaned)"/>
+                <Property Name="ItemsLoaned_ItemLoanedId" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="People">
+                <Key>
+                    <PropertyRef Name="PersonId"/>
+                </Key>
+                <Property Name="PersonId" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="StartDate" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="EndDate" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="HeightCm" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="ImageBase64" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ItemLoaned">
+                <Key>
+                    <PropertyRef Name="ItemLoanedId"/>
+                </Key>
+                <Property Name="ItemLoanedId" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Item_ProductID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="StartDate" Type="Edm.Date"/>
+                <Property Name="EndDate" Type="Edm.Date"/>
+            </EntityType>
+            <EntityType Name="EmergencyContacts">
+                <Key>
+                    <PropertyRef Name="EmergencyContactId"/>
+                </Key>
+                <Property Name="EmergencyContactId" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Contact_ContactGuid" Type="Edm.Guid"/>
+                <Property Name="PrimaryContact" Type="Edm.Boolean"/>
+                <Property Name="Relationship" Type="Edm.String" MaxLength="60"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -15,41 +15,46 @@
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^7"
+    "@sap/cds-dk": "^7",
+    "@sap/ux-specification": "^1.108.18"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-dialogdraft": "cds watch --open dialogdraft/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
       "db": {
-          "kind": "hana-cloud"
+        "kind": "hana-cloud"
       },
       "auth": "xsuaa",
       "destinations": true,
       "z_crud_test_srv": {
         "kind": "odata-v2",
         "model": "srv/external/z_crud_test_srv",
-        "csrf" : true,
-        "csrfInBatch" : true,
-        "[production]" : {
-            "credentials" : {
-                "destination" : "dest_ecc_crud_test"
-            }
+        "csrf": true,
+        "csrfInBatch": true,
+        "[production]": {
+          "credentials": {
+            "destination": "dest_ecc_crud_test"
+          }
         }
       },
       "gwsample": {
         "kind": "odata-v2",
         "model": "srv/external/gwsample",
-        "csrf" : true,
-        "csrfInBatch" : true,
-        "[production]" : {
-            "credentials" : {
-                "destination" : "ES5",
-                "path" : "/sap/opu/odata/iwbep/GWSAMPLE_BASIC"
-            }
+        "csrf": true,
+        "csrfInBatch": true,
+        "[production]": {
+          "credentials": {
+            "destination": "ES5",
+            "path": "/sap/opu/odata/iwbep/GWSAMPLE_BASIC"
+          }
         }
       }
     }
-  }
+  },
+  "sapux": [
+    "app/dialogdraft"
+  ]
 }
