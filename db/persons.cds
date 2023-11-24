@@ -1,17 +1,25 @@
 using {sap} from '@sap/cds/common';
 using {gwsample} from '../srv/external/gwsample';
-using {z_crud_test_srv} from '../srv/external/z_crud_test_srv';
 
 namespace persons;
 
+//use contacts and business partner
+
 entity PersonsSet {
     key PersonId : UUID;
-        People : Association to one People;
+        PersonalDetail : Association to one PersonalDetail;
         EmergencyContacts : Association to many EmergencyContacts;
         ItemsLoaned : Association to many ItemLoaned;
 }
 
-entity People as projection on z_crud_test_srv.People;
+entity PersonalDetail {
+    key PersonalDetId : UUID;
+        FirstName : String (60);
+        LastName : String (60);
+        Email : String (255);
+        ContactNumber : String (255);
+        Image : LargeString;
+}
 
 entity ItemLoaned {
     key ItemLoanedId : UUID;

@@ -29,17 +29,6 @@
       },
       "auth": "xsuaa",
       "destinations": true,
-      "z_crud_test_srv": {
-        "kind": "odata-v2",
-        "model": "srv/external/z_crud_test_srv",
-        "csrf": true,
-        "csrfInBatch": true,
-        "[production]": {
-          "credentials": {
-            "destination": "dest_ecc_crud_test"
-          }
-        }
-      },
       "gwsample": {
         "kind": "odata-v2",
         "model": "srv/external/gwsample",
