@@ -40,3 +40,6 @@ core
 dist/
 resources/
 app/*/package-lock.json
+
+# auto generated wildcard
+db/.env

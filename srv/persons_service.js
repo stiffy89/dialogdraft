@@ -8,7 +8,7 @@ module.exports = cds.service.impl(async function () {
         People,
         EmergencyContacts,
         ItemsLoaned
-    } = srv.entites;
+    } = srv.entities;
 
     const gwservice = await cds.connect.to('gwsample');
 
