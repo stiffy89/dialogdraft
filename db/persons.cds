@@ -8,8 +8,8 @@ namespace persons;
 entity PersonsSet {
     key PersonId : UUID;
         PersonalDetail : Association to one PersonalDetail;
-        EmergencyContacts : Association to many EmergencyContacts;
-        ItemsLoaned : Association to many ItemLoaned;
+        EmergencyContacts : Association to many EmergencyContacts on EmergencyContacts.MainPerson = $self;
+        ItemsLoaned : Association to many ItemLoaned on ItemsLoaned.MainPerson = $self;
 }
 
 entity PersonalDetail {
@@ -23,6 +23,7 @@ entity PersonalDetail {
 
 entity ItemLoaned {
     key ItemLoanedId : UUID;
+        MainPerson : Association to PersonsSet;
         Item : Association to one gwsample.ProductSet;
         StartDate : Date;
         EndDate : Date;
@@ -30,6 +31,7 @@ entity ItemLoaned {
 
 entity EmergencyContacts {
     key EmergencyContactId : cds.UUID;
+        MainPerson : Association to PersonsSet;
         Contact : Association to one gwsample.ContactSet;
         PrimaryContact : Boolean;
         Relationship : String (60);
