@@ -12,5 +12,9 @@ module.exports = cds.service.impl(async function () {
 
     const gwservice = await cds.connect.to('gwsample');
 
+    this.on('READ', PersonSet, async(req, next) => {
+        return next();
+    })
+
     
 });
