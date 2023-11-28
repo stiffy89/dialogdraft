@@ -7,9 +7,9 @@ namespace persons;
 
 entity PersonsSet {
     key PersonId : UUID;
-        PersonalDetail : Association to one PersonalDetail;
-        EmergencyContacts : Association to many EmergencyContacts on EmergencyContacts.MainPerson = $self;
-        ItemsLoaned : Association to many ItemLoaned on ItemsLoaned.MainPerson = $self;
+        PersonalDetail : Association to PersonalDetail;
+        EmergencyContacts : Composition of many EmergencyContacts on EmergencyContacts.MainPerson = $self;
+        ItemsLoaned : Composition of many ItemLoaned on ItemsLoaned.MainPerson = $self;
 }
 
 entity PersonalDetail {

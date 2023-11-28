@@ -14,7 +14,9 @@ module.exports = cds.service.impl(async function () {
 
     this.on('READ', PersonSet, async(req, next) => {
         return next();
-    })
+    });
+
+    
 
     
 });
