@@ -42,28 +42,33 @@ annotate service.EmergencyContacts with @(
     UI.LineItem #EmergencyContacts : [
         {
             $Type : 'UI.DataField',
-            Value : Contact.FirstName,
+            Value : FirstName,
             Label : 'First Name',
-        }, 
-        {
-            $Type : 'UI.DataField',
-            Value : Contact.LastName,
-            Label : 'First Name',
-        }, 
-        {
-            $Type : 'UI.DataField',
-            Value : Contact.PhoneNumber,
-            Label : 'Phone number',
         },
         {
             $Type : 'UI.DataField',
+            Value : LastName,
+            Label : 'Last Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Email,
+            Label : 'Email',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Mobile,
+            Label : 'Mobile',
+        },  
+        {
+            $Type : 'UI.DataField',
             Value : PrimaryContact,
-            Label : 'PrimaryContact',
+            Label : 'Primary Contact',
         },
         {
             $Type : 'UI.DataField',
             Value : Relationship,
-            Label : 'Relationship',
+            Label : 'Relationship'
         } 
     ]
 );
@@ -91,17 +96,16 @@ annotate service.PersonSet with @(
             },],
     }
 );
-
 annotate service.ItemLoaned with @(
     UI.LineItem #Itemsonloan : [
         {
             $Type : 'UI.DataField',
-            Value : Item.Name,
-            Label : 'Item name',
+            Value : ItemName,
+            Label : 'Name',
         },
         {
             $Type : 'UI.DataField',
-            Value : Item.Category,
+            Value : ItemCategory,
             Label : 'Category',
         },
         {
@@ -113,6 +117,5 @@ annotate service.ItemLoaned with @(
             $Type : 'UI.DataField',
             Value : EndDate,
             Label : 'EndDate',
-        } 
-    ]
+        },]
 );

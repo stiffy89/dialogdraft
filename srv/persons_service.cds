@@ -8,9 +8,18 @@ service personsservice {
         ItemsLoaned
     };
 
+
     entity People as projection on persons.PersonalDetail;
 
-    entity ItemLoaned as projection on persons.ItemLoaned;
+    entity ItemLoaned as select from persons.ItemLoaned {
+        ItemLoanedId,
+        MainPerson,
+        Item.Category as ItemCategory,
+        Item.Name as ItemName,
+        Item,
+        StartDate,
+        EndDate
+    };
 
     entity EmergencyContacts as projection on persons.EmergencyContacts;
 
