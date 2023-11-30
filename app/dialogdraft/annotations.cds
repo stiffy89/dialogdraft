@@ -1,5 +1,18 @@
 using personsservice as service from '../../srv/persons_service';
 
+//enable the editing for these two services
+annotate service.PersonSet with @odata.draft.enabled;
+annotate service.PersonalDetail with @odata.draft.enabled;
+
+//hide the default create buttons for the table entities, we are going to use custom ones
+annotate service.EmergencyContacts with @(
+    UI.CreateHidden : true
+);
+
+annotate service.ItemLoaned with @(
+    UI.CreateHidden : true
+);
+
 annotate service.PersonSet with @(
     UI.LineItem : [
         {
@@ -44,6 +57,7 @@ annotate service.EmergencyContacts with @(
             $Type : 'UI.DataField',
             Value : FirstName,
             Label : 'First Name',
+            ![@UI.Importance] : #High,
         },
         {
             $Type : 'UI.DataField',
@@ -59,16 +73,19 @@ annotate service.EmergencyContacts with @(
             $Type : 'UI.DataField',
             Value : Mobile,
             Label : 'Mobile',
+            ![@UI.Importance] : #High,
         },  
         {
             $Type : 'UI.DataField',
             Value : PrimaryContact,
             Label : 'Primary Contact',
+            ![@UI.Importance] : #High,
         },
         {
             $Type : 'UI.DataField',
             Value : Relationship,
-            Label : 'Relationship'
+            Label : 'Relationship',
+            ![@UI.Importance] : #Low
         } 
     ]
 );
@@ -100,16 +117,6 @@ annotate service.ItemLoaned with @(
     UI.LineItem #Itemsonloan : [
         {
             $Type : 'UI.DataField',
-            Value : ItemName,
-            Label : 'Name',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : ItemCategory,
-            Label : 'Category',
-        },
-        {
-            $Type : 'UI.DataField',
             Value : StartDate,
             Label : 'StartDate',
         },
@@ -117,5 +124,20 @@ annotate service.ItemLoaned with @(
             $Type : 'UI.DataField',
             Value : EndDate,
             Label : 'EndDate',
-        },]
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Item.Category,
+            Label : 'Category',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Item.Name,
+            Label : 'Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Item.ProductID,
+            Label : 'ProductID',
+        }]
 );

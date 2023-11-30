@@ -24,7 +24,7 @@ entity PersonalDetail {
 entity ItemLoaned {
     key ItemLoanedId : UUID;
         MainPerson : Association to PersonsSet;
-        Item : Association to Products;
+        Item : Association to one Product;
         StartDate : Date;
         EndDate : Date;
 }
@@ -40,4 +40,4 @@ entity EmergencyContacts {
         Mobile : String (20);
 }
 
-entity Products as projection on gwsample.ProductSet;
+entity Product as projection on gwsample.ProductSet;

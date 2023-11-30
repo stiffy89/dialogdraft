@@ -82,7 +82,11 @@
             }
         },
         "resources": {
-            "css": []
+            "css": [
+                {
+                    "uri" : "css/style.css"
+                }
+            ]
         },
         "routing": {
             "config": {
@@ -138,7 +142,65 @@
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "contextPath": "/PersonSet"
+                            "contextPath": "/PersonSet",
+                            "variantManagement": "None",
+                            "controlConfiguration": {
+                                "EmergencyContacts/@com.sap.vocabularies.UI.v1.LineItem#EmergencyContacts": {
+                                    "tableSettings": {
+                                        "enableExport": false,
+                                        "selectAll": false,
+                                        "selectionLimit": 0,
+                                        "selectionMode": "Single"
+                                    },
+                                    "actions": {
+                                        "editEmergencyContact": {
+                                            "press": "ns.dialogdraft.ext.controller.CustomActions.editEmergencyContact",
+                                            "visible": true,
+                                            "enabled": "{ui>/isEditable}",
+                                            "requiresSelection": false,
+                                            "text": "Edit"
+                                        },
+                                        "createEmergencyContact": {
+                                            "press": "ns.dialogdraft.ext.controller.CustomActions.createEmergencyContact",
+                                            "visible": true,
+                                            "enabled": "{ui>/isEditable}",
+                                            "requiresSelection": false,
+                                            "text": "Create",
+                                            "position": {
+                                                "placement": "Before",
+                                                "anchor": "editEmergencyContact"
+                                            }
+                                        }
+                                    }
+                                },
+                                "ItemsLoaned/@com.sap.vocabularies.UI.v1.LineItem#Itemsonloan": {
+                                    "actions": {
+                                        "editItemsOnLoan": {
+                                            "press": "ns.dialogdraft.ext.controller.CustomActions.editItemsOnLoan",
+                                            "visible": true,
+                                            "enabled": "{ui>/isEditable}",
+                                            "requiresSelection": false,
+                                            "text": "Edit"
+                                        },
+                                        "createItemsOnLoan": {
+                                            "press": "ns.dialogdraft.ext.controller.CustomActions.createItemsOnLoan",
+                                            "visible": true,
+                                            "enabled": "{ui>/isEditable}",
+                                            "requiresSelection": false,
+                                            "text": "Create",
+                                            "position": {
+                                                "placement": "Before",
+                                                "anchor": "editItemsOnLoan"
+                                            }
+                                        }
+                                    },
+                                    "tableSettings": {
+                                        "selectAll": false,
+                                        "selectionLimit": 0,
+                                        "selectionMode": "Single"
+                                    }
+                                }
+                            }
                         }
                     },
                     "controlAggregation": "midColumnPages",
